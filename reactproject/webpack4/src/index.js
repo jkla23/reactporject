@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from './App';
-import main from './main.css';
 import Home from './Home';
 import User from './User';
 import Test from './Test';

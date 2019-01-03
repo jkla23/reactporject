@@ -1,35 +1,56 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {add,fetchlist} from './actions/actions';
-import {islogin,delogin} from './actions/login';
+import {addcart,delcart} from './actions/carts';
 const mapStateToProps=(state)=>{
   return {
-      counter:state.reducer.counter,
-      list:state.reducer.list,
-      login:state.login.login
+     cart:state.carts
   }
 }
+
 class User extends Component{
-    sdf(){
-      console.log(123)
-    };
+  
+  
+  show(){
+     const {cart}=this.props;
+     var arr=[];
+     if(cart.length>0){
+      for(let i=0;i<cart.length;i++){
+        cart[i].index=i;
+        arr.push(<li style={{textAlign:'center',listStyle:'none'}} className="col-md-4 col-xs-12" key={i}><h5 style={{textAlign:'center'}}>{cart[i].name}</h5>
+                      <img src={cart[i].img} />
+                       <p>{cart[i].text}</p> 
+                       <button onClick={()=>{this.adcart(cart[i])}}>+</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你购买的商品数量为：<span className='change'>{cart[i].quantity}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <button onClick={()=>{this.decart(cart[i])}}>-</button>
+                   </li>)
+                   
+      }
+    }
+    return arr
+  }
+  adcart(product){
+    this.props.addcart(product)
+    var change=document.querySelectorAll('.change');
+    change[product.index].innerHTML=product.quantity;
+  }
+  decart(product){
+    this.props.delcart(product)
+    var change=document.querySelectorAll('.change');
+    change[product.index].innerHTML=product.quantity;
+  }
   render(){
     return (
       <div>
-           counter : {this.props.counter}
-           {this.props.list.length>0 ? this.props.list.map(function(iteam,index){
-             return <li key={index}>{iteam.name}
-            
-             <img src={iteam.img}/>
-             </li>
-           }) : null}
-           <button onClick={this.props.add}>++</button>
-           <button onClick={this.props.fetchlist}>ajax</button>
-           <button onClick={this.props.islogin}>ture</button>
-           <button onClick={this.sdf}>tue</button>
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+         <div style={{overflow:'hidden'}}>         
+         {this.show()}
+         </div>
+
+         <div style={{width:'120px',height:'40px',background:'orange',color:'white',fontSize:'20px',borderRadius:'10%',textAlign:'center',lineHeight:'40px',margin:'20px 60% '}}>
+            <p>点击付款</p>
+         </div>
       </div>
     )
   }
 }
-const CounterCon=connect(mapStateToProps,{add,fetchlist,islogin,delogin})(User)
+const CounterCon=connect(mapStateToProps,{addcart,delcart})(User)
 export default CounterCon;

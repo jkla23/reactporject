@@ -8,6 +8,7 @@ module.exports=function(){
                 name:Mock.Random.ctitle(10,11),
                 img:Mock.Random.image('300x250',Mock.Random.color()),
                 text:Mock.Random.ctitle(10,12),
+                number:Mock.Random.integer(80,300),
                 stars:Mock.mock({
                     'number|1-100':100
                 })

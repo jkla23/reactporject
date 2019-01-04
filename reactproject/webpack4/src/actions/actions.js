@@ -12,7 +12,6 @@ export const getlist=(data)=>{
 }
 export function fetchlist(params={page:1,limit:12}){
     return dispatch=>{
-        
         const url=`http://localhost:3000/shop?_page=${params.page}&_limit=${params.limit}`;
         axios({
             url:url,

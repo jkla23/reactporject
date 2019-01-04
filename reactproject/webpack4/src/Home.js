@@ -27,23 +27,6 @@ class Home extends React.Component {
      })
   }
   render() {
-    // return (
-    //   <div style={{width:'300px',margin:'40px auto'}}>
-    //   <Form>
-    //     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-    //       <Label for="exampleEmail" className="mr-sm-2">Email</Label>
-    //       <Input type="email" name="email" id="exampleEmail" placeholder="something@idk.cool" />
-    //     </FormGroup>
-    //     <br/>
-    //     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-    //       <Label for="examplePassword" className="mr-sm-2">Password</Label>
-    //       <Input type="password" name="password" id="examplePassword" placeholder="don't tell!" />
-    //     </FormGroup>
-    //     <br/>
-    //     <Button onClick={()=>{this.axio()}}>Submit</Button>
-    //   </Form>
-    //   </div>
-    // );{
     const {login}=this.props;
     if(login){
       return (<Redirect to="/user" />);

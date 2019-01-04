@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {add,fetchlist} from './actions/actions';
 import {getcarts} from './actions/carts';
-import {NavLink} from 'react-router-dom';
+import {NavLink,Link} from 'react-router-dom';
 const mapStateToProps=(state)=>{
   return {
       counter:state.reducer.counter,
@@ -16,8 +16,6 @@ const mapStateToProps=(state)=>{
       var d=document.createElement('span')
       var top=event.pageY-10;
       var left=event.pageX+20;
-      console.log(top);
-      console.log(left)
       d.innerHTML="+1"
       document.getElementById("app").appendChild(d);
       console.log(top)
@@ -38,8 +36,9 @@ const mapStateToProps=(state)=>{
     var good=[]
     if(rows!=undefined){
       for(let i=0;i<rows.length;i++){
+        var str="/details/"+rows[i].id
         good.push(<li style={{textAlign:'center',listStyle:'none'}} className="col-md-4 col-xs-12" key={i}><h5 style={{textAlign:'center'}}>{rows[i].name}</h5>
-                      <img src={rows[i].img} />
+                       <Link to={str}><img src={rows[i].img} /></Link>
                        <p>{rows[i].text}</p>
                        <button className="btn btn-info" onClick={()=>this.addcart(rows[i],event)}>加入购物车</button>
                    </li>)
